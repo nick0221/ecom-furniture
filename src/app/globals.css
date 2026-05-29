@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-primary: #2C1810;
+  --color-primary-light: #5C4033;
+  --color-primary-dark: #1A0E08;
+  --color-accent: #C4A77D;
+  --color-accent-light: #D4BFA0;
+  --color-accent-dark: #A08B68;
+  --color-surface: #FAF7F2;
+  --color-surface-dark: #F0EBE3;
+  --color-muted: #6B7280;
+  --color-success: #059669;
+  --color-danger: #DC2626;
+  --color-warning: #D97706;
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+:root {
+  --background: #FAF7F2;
+  --foreground: #2C1810;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #C4A77D #F0EBE3;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+::selection {
+  background-color: #C4A77D;
+  color: white;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: 2px solid #C4A77D;
+  outline-offset: 2px;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, #F0EBE3 25%, #FAF7F2 50%, #F0EBE3 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
