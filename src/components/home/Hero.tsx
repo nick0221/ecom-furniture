@@ -429,48 +429,64 @@ export default function Hero() {
               </motion.div>
             </div>
 
-            {/* ── Right: 3-Image Showcase ───────────── */}
+            {/* ── Right: Overlapping Photo Stack ────── */}
             <motion.div
               style={{ y: y2 }}
-              className="flex items-center justify-center relative mt-10 lg:mt-0 h-[420px] sm:h-[480px] lg:h-[520px]"
+              className="flex items-center justify-center relative mt-10 lg:mt-0 h-[380px] sm:h-[440px] lg:h-[480px]"
             >
-              {/* Image 1 — tall, back-left */}
+              {/* Back-left photo */}
               <motion.div
-                initial={{ opacity: 0, x: -40, rotate: -8 }}
-                animate={{ opacity: 1, x: 0, rotate: -6 }}
-                transition={{ duration: 0.9, delay: prefersReduced ? 0 : 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
-                className="absolute left-0 sm:left-4 top-0 w-36 h-52 sm:w-44 sm:h-64 lg:w-52 lg:h-72 rounded-2xl overflow-hidden shadow-2xl border border-white/10 z-10"
-                style={{
-                  transform: prefersReduced
-                    ? undefined
-                    : `perspective(800px) rotateX(${tiltX * 0.5}deg) rotateY(${tiltY * 0.5}deg)`,
-                }}
+                initial={{ opacity: 0, x: 60, y: 40, rotate: 0 }}
+                animate={{ opacity: 1, x: -30, y: -20, rotate: -10 }}
+                transition={{ duration: 1, delay: prefersReduced ? 0 : 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+                className="absolute w-40 h-52 sm:w-48 sm:h-60 lg:w-56 lg:h-72 rounded-xl overflow-hidden shadow-2xl border-4 border-white/20 z-10"
               >
                 <Image
                   src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=500"
                   alt="Minimalist bedroom"
                   fill
                   className="object-cover"
-                  sizes="(max-width: 640px) 144px, (max-width: 1024px) 176px, 208px"
+                  sizes="(max-width: 640px) 160px, (max-width: 1024px) 192px, 224px"
                   priority
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/40 via-transparent to-transparent" />
-                <div className="absolute bottom-3 left-3 right-3">
-                  <p className="text-white text-xs font-semibold drop-shadow">Bedrooms</p>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                <div className="absolute bottom-3 left-3">
+                  <p className="text-white text-xs font-semibold drop-shadow-lg">Bedrooms</p>
                 </div>
               </motion.div>
 
-              {/* Image 2 — hero center, largest */}
+              {/* Back-right photo */}
+              <motion.div
+                initial={{ opacity: 0, x: -60, y: 40, rotate: 0 }}
+                animate={{ opacity: 1, x: 40, y: 10, rotate: 8 }}
+                transition={{ duration: 1, delay: prefersReduced ? 0 : 0.45, ease: [0.25, 0.46, 0.45, 0.94] }}
+                className="absolute w-40 h-52 sm:w-48 sm:h-60 lg:w-56 lg:h-72 rounded-xl overflow-hidden shadow-2xl border-4 border-white/20 z-20"
+              >
+                <Image
+                  src="https://images.unsplash.com/photo-1532372576444-dda954194ad0?w=500"
+                  alt="Industrial dining table"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 640px) 160px, (max-width: 1024px) 192px, 224px"
+                  priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                <div className="absolute bottom-3 left-3">
+                  <p className="text-white text-xs font-semibold drop-shadow-lg">Dining</p>
+                </div>
+              </motion.div>
+
+              {/* Center hero photo — largest, in front */}
               <motion.div
                 ref={mainImageRef}
-                initial={{ opacity: 0, y: 40, scale: 0.9 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ duration: 1, delay: prefersReduced ? 0 : 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-                className="absolute left-1/2 -translate-x-1/2 top-6 sm:top-8 w-44 h-60 sm:w-56 sm:h-72 lg:w-64 lg:h-80 rounded-2xl overflow-hidden shadow-2xl border border-white/10 z-30"
+                initial={{ opacity: 0, y: 60, scale: 0.85 }}
+                animate={{ opacity: 1, y: -10, scale: 1 }}
+                transition={{ duration: 1.1, delay: prefersReduced ? 0 : 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+                className="absolute w-48 h-64 sm:w-60 sm:h-76 lg:w-72 lg:h-96 rounded-2xl overflow-hidden shadow-[0_25px_60px_-12px_rgba(0,0,0,0.5)] border-4 border-white/30 z-30 transition-transform duration-200 ease-out"
                 style={{
                   transform: prefersReduced
                     ? undefined
-                    : `perspective(800px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`,
+                    : `perspective(800px) rotateX(${tiltX * 0.8}deg) rotateY(${tiltY * 0.8}deg)`,
                 }}
               >
                 <Image
@@ -478,48 +494,23 @@ export default function Hero() {
                   alt="Premium sofa"
                   fill
                   className="object-cover"
-                  sizes="(max-width: 640px) 176px, (max-width: 1024px) 224px, 256px"
+                  sizes="(max-width: 640px) 192px, (max-width: 1024px) 240px, 288px"
                   priority
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/50 via-transparent to-transparent" />
-                <div className="absolute bottom-3 left-3 right-3">
-                  <p className="text-white text-xs font-semibold drop-shadow">Living Room</p>
-                </div>
-              </motion.div>
-
-              {/* Image 3 — front-right */}
-              <motion.div
-                initial={{ opacity: 0, x: 40, rotate: 8 }}
-                animate={{ opacity: 1, x: 0, rotate: 5 }}
-                transition={{ duration: 0.9, delay: prefersReduced ? 0 : 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-                className="absolute right-0 sm:right-4 bottom-4 sm:bottom-8 w-36 h-52 sm:w-44 sm:h-64 lg:w-48 lg:h-64 rounded-2xl overflow-hidden shadow-2xl border border-white/10 z-20"
-                style={{
-                  transform: prefersReduced
-                    ? undefined
-                    : `perspective(800px) rotateX(${tiltX * 0.7}deg) rotateY(${tiltY * 0.7}deg)`,
-                }}
-              >
-                <Image
-                  src="https://images.unsplash.com/photo-1532372576444-dda954194ad0?w=500"
-                  alt="Industrial table"
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 640px) 144px, (max-width: 1024px) 176px, 192px"
-                  priority
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/40 via-transparent to-transparent" />
-                <div className="absolute bottom-3 left-3 right-3">
-                  <p className="text-white text-xs font-semibold drop-shadow">Dining</p>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                <div className="absolute bottom-4 left-4 right-4">
+                  <p className="text-white text-sm font-bold drop-shadow-lg">Living Room</p>
+                  <p className="text-white/70 text-xs mt-0.5">Our bestseller collection</p>
                 </div>
               </motion.div>
 
               {/* Floating rating card */}
               {!prefersReduced && (
                 <motion.div
-                  initial={{ opacity: 0, x: 30 }}
-                  animate={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 1.2, duration: 0.6 }}
-                  className="absolute left-2 sm:left-0 top-0 bg-white/95 backdrop-blur-sm rounded-xl p-3 shadow-xl z-40"
+                  className="absolute left-0 sm:left-4 top-2 sm:top-4 bg-white/95 backdrop-blur-sm rounded-xl p-3 shadow-xl z-40"
                 >
                   <div className="flex items-center gap-2">
                     <div className="w-8 h-8 bg-accent/20 rounded-lg flex items-center justify-center">
@@ -536,10 +527,10 @@ export default function Hero() {
               {/* Floating shipping card */}
               {!prefersReduced && (
                 <motion.div
-                  initial={{ opacity: 0, x: -30 }}
-                  animate={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 1.5, duration: 0.6 }}
-                  className="absolute right-0 sm:right-2 bottom-0 bg-white/95 backdrop-blur-sm rounded-xl p-3 shadow-xl z-40"
+                  className="absolute right-0 sm:right-4 bottom-4 sm:bottom-8 bg-white/95 backdrop-blur-sm rounded-xl p-3 shadow-xl z-40"
                 >
                   <div className="flex items-center gap-2">
                     <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
