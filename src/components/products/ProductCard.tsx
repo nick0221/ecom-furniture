@@ -1,12 +1,14 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Heart, ShoppingBag, Star } from "lucide-react";
+import { Heart, ShoppingBag, Star, Eye } from "lucide-react";
 import type { Product } from "@/types";
 import { formatPrice, getDiscount } from "@/lib/utils";
 import Badge from "@/components/ui/Badge";
+import QuickView from "./QuickView";
 import { useCartStore } from "@/store/cartStore";
 import { useWishlistStore } from "@/store/wishlistStore";
 import { useToastStore } from "@/components/ui/Toast";
@@ -25,6 +27,7 @@ export default function ProductCard({
     useWishlistStore();
   const wishlisted = isInWishlist(product.id);
   const addToast = useToastStore((s) => s.addToast);
+  const [quickViewOpen, setQuickViewOpen] = useState(false);
 
   if (viewMode === "list") {
     return (
@@ -185,6 +188,15 @@ export default function ProductCard({
           >
             <ShoppingBag size={16} className="text-muted" />
           </button>
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              setQuickViewOpen(true);
+            }}
+            className="w-9 h-9 bg-white rounded-full shadow-md flex items-center justify-center hover:bg-surface transition-colors"
+          >
+            <Eye size={16} className="text-muted" />
+          </button>
         </div>
       </div>
 
@@ -222,6 +234,12 @@ export default function ProductCard({
           )}
         </div>
       </Link>
+
+      <QuickView
+        product={product}
+        isOpen={quickViewOpen}
+        onClose={() => setQuickViewOpen(false)}
+      />
     </motion.div>
   );
 }

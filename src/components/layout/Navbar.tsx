@@ -12,6 +12,7 @@ import {
   Search,
   ArrowRight,
   Star,
+  Heart,
 } from "lucide-react";
 import { NAV_LINKS, SITE_NAME } from "@/lib/constants";
 import { useCartStore } from "@/store/cartStore";
@@ -242,6 +243,13 @@ export default function Navbar() {
               className="hidden sm:flex p-2 text-primary/70 hover:text-primary transition-colors"
             >
               <User size={20} />
+            </Link>
+
+            <Link
+              href="/wishlist"
+              className="hidden sm:flex p-2 text-primary/70 hover:text-primary transition-colors"
+            >
+              <Heart size={20} />
             </Link>
 
             <Link

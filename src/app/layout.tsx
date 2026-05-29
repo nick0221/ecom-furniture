@@ -5,6 +5,8 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { ToastContainer } from "@/components/ui/Toast";
 import BackToTop from "@/components/home/BackToTop";
+import ScrollProgress from "@/components/ui/ScrollProgress";
+import PageTransition from "@/components/ui/PageTransition";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,7 +27,7 @@ export const metadata: Metadata = {
     template: "%s | WoodCraft",
   },
   description:
-    "Premium handcrafted furniture for modern living. Discover our curated collection of sofas, tables, chairs, beds, and storage — designed to transform your space into a haven of comfort and style.",
+    "Premium handcrafted furniture for modern living. Discover our curated collection of sofas, tables, chairs, beds, and more.",
   keywords: [
     "furniture",
     "handcrafted furniture",
@@ -99,8 +101,11 @@ export default function RootLayout({
         <link rel="canonical" href={siteUrl} />
       </head>
       <body className="min-h-full flex flex-col bg-surface">
+        <ScrollProgress />
         <Navbar />
-        <main className="flex-1 pt-16 lg:pt-20">{children}</main>
+        <main className="flex-1 pt-16 lg:pt-20">
+          <PageTransition>{children}</PageTransition>
+        </main>
         <Footer />
         <ToastContainer />
         <BackToTop />

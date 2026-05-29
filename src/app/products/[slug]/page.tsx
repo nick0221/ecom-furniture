@@ -26,6 +26,7 @@ import Breadcrumb from "@/components/layout/Breadcrumb";
 import Badge from "@/components/ui/Badge";
 import Button from "@/components/ui/Button";
 import AnimatedSection from "@/components/ui/AnimatedSection";
+import ImageZoom from "@/components/ui/ImageZoom";
 import ProductCard from "@/components/products/ProductCard";
 import { animate } from "animejs";
 
@@ -104,13 +105,10 @@ export default function ProductDetailPage({
                   transition={{ duration: 0.3 }}
                   className="relative w-full h-full"
                 >
-                  <Image
+                  <ImageZoom
                     src={product.images[selectedImage]}
                     alt={product.name}
-                    fill
-                    className="object-cover"
                     sizes="(max-width: 1024px) 100vw, 50vw"
-                    priority
                   />
                 </motion.div>
               </AnimatePresence>
