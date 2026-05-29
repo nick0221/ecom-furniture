@@ -198,7 +198,7 @@ export const products: Product[] = [
     price: 1649,
     originalPrice: 1999,
     images: [
-      "https://images.unsplash.com/photo-1558997519-8e1d44848b94?w=800",
+      "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=800",
       "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?w=800",
       "https://images.unsplash.com/photo-1615874959474-d609969a20ed?w=800",
     ],
@@ -221,7 +221,7 @@ export const products: Product[] = [
       "Bring organic texture to your bedroom with this handcrafted rattan nightstand. The woven frame surrounds a solid wood shelf, perfect for your lamp and bedtime essentials.",
     price: 329,
     images: [
-      "https://images.unsplash.com/photo-1532323544230-7191fd1f0f85?w=800",
+      "https://images.unsplash.com/photo-1530018607912-eff2daa1bac4?w=800",
       "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=800",
       "https://images.unsplash.com/photo-1588046130717-0eb0c9a3ba15?w=800",
     ],
