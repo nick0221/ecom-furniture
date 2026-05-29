@@ -126,15 +126,28 @@ export default function Hero() {
       </div>
 
       {/* Floating particles */}
-      {[...Array(12)].map((_, i) => (
+      {[
+        { w: 7, h: 5, l: 15, t: 22 },
+        { w: 5, h: 8, l: 30, t: 65 },
+        { w: 9, h: 6, l: 55, t: 18 },
+        { w: 4, h: 7, l: 72, t: 45 },
+        { w: 8, h: 5, l: 88, t: 75 },
+        { w: 6, h: 9, l: 20, t: 85 },
+        { w: 5, h: 5, l: 45, t: 35 },
+        { w: 7, h: 4, l: 65, t: 60 },
+        { w: 4, h: 6, l: 80, t: 12 },
+        { w: 8, h: 7, l: 38, t: 52 },
+        { w: 6, h: 5, l: 92, t: 38 },
+        { w: 5, h: 8, l: 10, t: 48 },
+      ].map((p, i) => (
         <div
           key={i}
           className="hero-particle absolute rounded-full bg-accent/30"
           style={{
-            width: `${4 + Math.random() * 6}px`,
-            height: `${4 + Math.random() * 6}px`,
-            left: `${10 + Math.random() * 80}%`,
-            top: `${10 + Math.random() * 80}%`,
+            width: `${p.w}px`,
+            height: `${p.h}px`,
+            left: `${p.l}%`,
+            top: `${p.t}%`,
             opacity: 0,
           }}
         />
