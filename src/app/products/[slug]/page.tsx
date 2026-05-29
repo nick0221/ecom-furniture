@@ -21,6 +21,7 @@ import { getReviewsByProduct } from "@/data/reviews";
 import { formatPrice, getDiscount } from "@/lib/utils";
 import { useCartStore } from "@/store/cartStore";
 import { useWishlistStore } from "@/store/wishlistStore";
+import { useToastStore } from "@/components/ui/Toast";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import Badge from "@/components/ui/Badge";
 import Button from "@/components/ui/Button";
@@ -45,6 +46,7 @@ export default function ProductDetailPage({
   const [quantity, setQuantity] = useState(1);
   const [activeTab, setActiveTab] = useState<"description" | "specs" | "reviews">("description");
   const [added, setAdded] = useState(false);
+  const addToast = useToastStore((s) => s.addToast);
 
   if (!product) {
     return (
@@ -66,6 +68,7 @@ export default function ProductDetailPage({
   const handleAddToCart = () => {
     addItem(product, quantity);
     setAdded(true);
+    addToast(`${product.name} added to cart`, "cart");
 
     // Anime.js cart animation
     animate(".cart-pulse", {
@@ -239,11 +242,15 @@ export default function ProductDetailPage({
                   {added ? "Added to Cart!" : "Add to Cart"}
                 </Button>
                 <button
-                  onClick={() =>
-                    wishlisted
-                      ? removeWishlist(product.id)
-                      : addWishlist(product)
-                  }
+                  onClick={() => {
+                    if (wishlisted) {
+                      removeWishlist(product.id);
+                      addToast("Removed from wishlist", "wishlist");
+                    } else {
+                      addWishlist(product);
+                      addToast("Added to wishlist", "wishlist");
+                    }
+                  }}
                   className={`p-3.5 rounded-lg border-2 transition-all ${
                     wishlisted
                       ? "border-danger bg-red-50 text-danger"

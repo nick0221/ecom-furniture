@@ -9,6 +9,7 @@ import { formatPrice, getDiscount } from "@/lib/utils";
 import Badge from "@/components/ui/Badge";
 import { useCartStore } from "@/store/cartStore";
 import { useWishlistStore } from "@/store/wishlistStore";
+import { useToastStore } from "@/components/ui/Toast";
 
 interface ProductCardProps {
   product: Product;
@@ -19,6 +20,7 @@ export default function ProductCard({ product }: ProductCardProps) {
   const { addItem: addWishlist, removeItem: removeWishlist, isInWishlist } =
     useWishlistStore();
   const wishlisted = isInWishlist(product.id);
+  const addToast = useToastStore((s) => s.addToast);
 
   return (
     <motion.div
@@ -46,9 +48,13 @@ export default function ProductCard({ product }: ProductCardProps) {
           <button
             onClick={(e) => {
               e.preventDefault();
-              wishlisted
-                ? removeWishlist(product.id)
-                : addWishlist(product);
+              if (wishlisted) {
+                removeWishlist(product.id);
+                addToast("Removed from wishlist", "wishlist");
+              } else {
+                addWishlist(product);
+                addToast("Added to wishlist", "wishlist");
+              }
             }}
             className="w-9 h-9 bg-white rounded-full shadow-md flex items-center justify-center hover:bg-surface transition-colors"
           >
@@ -61,6 +67,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             onClick={(e) => {
               e.preventDefault();
               addItem(product);
+              addToast(`${product.name} added to cart`, "cart");
             }}
             className="w-9 h-9 bg-white rounded-full shadow-md flex items-center justify-center hover:bg-surface transition-colors"
           >
