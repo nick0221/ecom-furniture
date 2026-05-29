@@ -11,6 +11,7 @@ import {
   User,
   Search,
   ArrowRight,
+  Star,
 } from "lucide-react";
 import { NAV_LINKS, SITE_NAME } from "@/lib/constants";
 import { useCartStore } from "@/store/cartStore";
@@ -181,13 +182,36 @@ export default function Navbar() {
                                 <p className="text-sm font-medium text-primary truncate">
                                   {product.name}
                                 </p>
-                                <p className="text-xs text-muted">
+                                <p className="text-xs text-muted mb-0.5">
                                   {product.category}
                                 </p>
+                                <div className="flex items-center gap-1">
+                                  {[...Array(5)].map((_, i) => (
+                                    <Star
+                                      key={i}
+                                      size={10}
+                                      className={
+                                        i < Math.floor(product.rating)
+                                          ? "fill-amber-400 text-amber-400"
+                                          : "text-surface-dark"
+                                      }
+                                    />
+                                  ))}
+                                  <span className="text-[10px] text-muted ml-0.5">
+                                    ({product.reviewCount})
+                                  </span>
+                                </div>
                               </div>
-                              <span className="text-sm font-semibold text-primary shrink-0">
-                                {formatPrice(product.price)}
-                              </span>
+                              <div className="text-right shrink-0">
+                                <p className="text-sm font-semibold text-primary">
+                                  {formatPrice(product.price)}
+                                </p>
+                                {product.originalPrice && (
+                                  <p className="text-[11px] text-muted line-through">
+                                    {formatPrice(product.originalPrice)}
+                                  </p>
+                                )}
+                              </div>
                             </Link>
                           ))}
                         </div>
