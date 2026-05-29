@@ -9,7 +9,6 @@ import {
   MapPin,
   ChevronDown,
   Send,
-  CreditCard,
   Shield,
   Lock,
 } from "lucide-react";
@@ -44,13 +43,6 @@ const socials = [
   { label: "Instagram", href: "#", icon: "M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zM17.5 6.5h.01M7.5 2h9A5.5 5.5 0 0122 7.5v9a5.5 5.5 0 01-5.5 5.5h-9A5.5 5.5 0 012 16.5v-9A5.5 5.5 0 017.5 2z" },
   { label: "X", href: "#", icon: "M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" },
   { label: "Pinterest", href: "#", icon: "M12 2C6.477 2 2 6.477 2 12c0 4.237 2.636 7.855 6.356 9.312-.088-.791-.167-2.005.035-2.868.181-.78 1.172-4.97 1.172-4.97s-.299-.598-.299-1.482c0-1.388.806-2.425 1.808-2.425.853 0 1.265.64 1.265 1.408 0 .858-.546 2.14-.828 3.33-.236.995.499 1.806 1.48 1.806 1.778 0 3.144-1.874 3.144-4.58 0-2.393-1.72-4.068-4.177-4.068-2.845 0-4.515 2.135-4.515 4.34 0 .859.331 1.781.745 2.281a.3.3 0 01.069.288l-.278 1.133c-.044.183-.145.222-.335.134-1.249-.581-2.03-2.407-2.03-3.874 0-3.154 2.292-6.052 6.608-6.052 3.469 0 6.165 2.473 6.165 5.776 0 3.447-2.173 6.22-5.19 6.22-1.013 0-1.965-.527-2.291-1.148l-.623 2.378c-.226.869-.835 1.958-1.244 2.621.937.29 1.931.449 2.962.449 5.523 0 10-4.477 10-10S17.523 2 12 2z" },
-];
-
-const paymentMethods = [
-  { name: "Visa", bg: "bg-[#1A1F71]" },
-  { name: "Mastercard", bg: "bg-[#EB001B]" },
-  { name: "GCash", bg: "bg-[#007DFE]" },
-  { name: "Maya", bg: "bg-[#00C4B4]" },
 ];
 
 function MobileAccordion({
@@ -271,15 +263,29 @@ export default function Footer() {
       {/* ── Payment methods + copyright ──────────── */}
       <div className="border-t border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            {paymentMethods.map((pm) => (
-              <div
-                key={pm.name}
-                className={`${pm.bg} px-3 py-1.5 rounded text-[10px] font-bold text-white tracking-wide`}
-              >
-                {pm.name}
-              </div>
-            ))}
+          <div className="flex items-center gap-4">
+            {/* Visa */}
+            <svg viewBox="0 0 48 32" className="h-6 w-auto" aria-label="Visa">
+              <rect width="48" height="32" rx="4" fill="#1A1F71"/>
+              <path d="M19.5 21h-3l1.9-11h3l-1.9 11zm7.8-10.7c-.6-.2-1.5-.5-2.7-.5-3 0-5 1.5-5 3.7 0 1.6 1.5 2.6 2.6 3.1 1.2.6 1.6.9 1.6 1.5 0 .8-1 1.2-1.9 1.2-1.2 0-1.9-.2-2.9-.6l-.4-.2-.4 2.5c.7.3 2 .6 3.4.6 3.2 0 5.3-1.5 5.3-3.8 0-1.3-.8-2.3-2.5-3.1-1-.5-1.7-.9-1.7-1.4 0-.5.6-1 1.8-1 1 0 1.8.2 2.4.5l.3.1.5-2.5zm6.4 0h-2.3c-.7 0-1.3.2-1.6.9l-4.5 10.1h3.2l.6-1.7h3.9l.4 1.7h2.8l-2.5-11zm-3.7 7.1l1.6-4.3.9 4.3h-2.5zM16.3 10l-2.8 7.5-.3-1.5c-.5-1.7-2.1-3.5-3.9-4.4l2.7 10h3.3l4.8-11.6h-3.8z" fill="#fff"/>
+            </svg>
+            {/* Mastercard */}
+            <svg viewBox="0 0 48 32" className="h-6 w-auto" aria-label="Mastercard">
+              <rect width="48" height="32" rx="4" fill="#252525"/>
+              <circle cx="19" cy="16" r="8" fill="#EB001B"/>
+              <circle cx="29" cy="16" r="8" fill="#F79E1B"/>
+              <path d="M24 10.2a8 8 0 010 11.6 8 8 0 000-11.6z" fill="#FF5F00"/>
+            </svg>
+            {/* GCash */}
+            <svg viewBox="0 0 48 32" className="h-6 w-auto" aria-label="GCash">
+              <rect width="48" height="32" rx="4" fill="#007DFE"/>
+              <text x="24" y="20" textAnchor="middle" fill="#fff" fontSize="11" fontWeight="bold" fontFamily="Arial, sans-serif">GCash</text>
+            </svg>
+            {/* Maya */}
+            <svg viewBox="0 0 48 32" className="h-6 w-auto" aria-label="Maya">
+              <rect width="48" height="32" rx="4" fill="#00C4B4"/>
+              <text x="24" y="20" textAnchor="middle" fill="#fff" fontSize="11" fontWeight="bold" fontFamily="Arial, sans-serif">Maya</text>
+            </svg>
           </div>
           <p className="text-white/30 text-xs text-center sm:text-right">
             &copy; 2026 {SITE_NAME}. All rights reserved. Made with care.
