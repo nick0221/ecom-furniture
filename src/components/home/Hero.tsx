@@ -432,24 +432,24 @@ export default function Hero() {
             {/* ── Right: Overlapping Photo Stack ────── */}
             <motion.div
               style={{ y: y2 }}
-              className="flex items-center justify-center relative mt-10 lg:mt-0 h-[380px] sm:h-[440px] lg:h-[480px]"
+              className="flex items-center justify-center relative mt-10 lg:mt-0 h-[380px] sm:h-[440px] lg:h-[480px] w-full max-w-lg lg:max-w-xl"
             >
               {/* Back-left photo */}
               <motion.div
-                initial={{ opacity: 0, x: 60, y: 40, rotate: 0 }}
-                animate={{ opacity: 1, x: -30, y: -20, rotate: -10 }}
+                initial={{ opacity: 0, x: 80, y: 60, rotate: 0 }}
+                animate={{ opacity: 1, x: -80, y: -40, rotate: -12 }}
                 transition={{ duration: 1, delay: prefersReduced ? 0 : 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-                className="absolute w-40 h-52 sm:w-48 sm:h-60 lg:w-56 lg:h-72 rounded-xl overflow-hidden shadow-2xl border-4 border-white/20 z-10"
+                className="absolute w-36 h-48 sm:w-44 sm:h-56 lg:w-52 lg:h-64 rounded-xl overflow-hidden shadow-2xl border-4 border-white/20 z-10"
               >
                 <Image
                   src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=500"
                   alt="Minimalist bedroom"
                   fill
                   className="object-cover"
-                  sizes="(max-width: 640px) 160px, (max-width: 1024px) 192px, 224px"
+                  sizes="(max-width: 640px) 144px, (max-width: 1024px) 176px, 208px"
                   priority
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
                 <div className="absolute bottom-3 left-3">
                   <p className="text-white text-xs font-semibold drop-shadow-lg">Bedrooms</p>
                 </div>
@@ -457,20 +457,20 @@ export default function Hero() {
 
               {/* Back-right photo */}
               <motion.div
-                initial={{ opacity: 0, x: -60, y: 40, rotate: 0 }}
-                animate={{ opacity: 1, x: 40, y: 10, rotate: 8 }}
+                initial={{ opacity: 0, x: -80, y: 60, rotate: 0 }}
+                animate={{ opacity: 1, x: 80, y: 20, rotate: 10 }}
                 transition={{ duration: 1, delay: prefersReduced ? 0 : 0.45, ease: [0.25, 0.46, 0.45, 0.94] }}
-                className="absolute w-40 h-52 sm:w-48 sm:h-60 lg:w-56 lg:h-72 rounded-xl overflow-hidden shadow-2xl border-4 border-white/20 z-20"
+                className="absolute w-36 h-48 sm:w-44 sm:h-56 lg:w-52 lg:h-64 rounded-xl overflow-hidden shadow-2xl border-4 border-white/20 z-20"
               >
                 <Image
                   src="https://images.unsplash.com/photo-1532372576444-dda954194ad0?w=500"
                   alt="Industrial dining table"
                   fill
                   className="object-cover"
-                  sizes="(max-width: 640px) 160px, (max-width: 1024px) 192px, 224px"
+                  sizes="(max-width: 640px) 144px, (max-width: 1024px) 176px, 208px"
                   priority
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
                 <div className="absolute bottom-3 left-3">
                   <p className="text-white text-xs font-semibold drop-shadow-lg">Dining</p>
                 </div>
@@ -480,9 +480,9 @@ export default function Hero() {
               <motion.div
                 ref={mainImageRef}
                 initial={{ opacity: 0, y: 60, scale: 0.85 }}
-                animate={{ opacity: 1, y: -10, scale: 1 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{ duration: 1.1, delay: prefersReduced ? 0 : 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-                className="absolute w-48 h-64 sm:w-60 sm:h-76 lg:w-72 lg:h-96 rounded-2xl overflow-hidden shadow-[0_25px_60px_-12px_rgba(0,0,0,0.5)] border-4 border-white/30 z-30 transition-transform duration-200 ease-out"
+                className="absolute w-44 h-60 sm:w-56 sm:h-72 lg:w-64 lg:h-80 rounded-2xl overflow-hidden shadow-[0_25px_60px_-12px_rgba(0,0,0,0.5)] border-4 border-white/30 z-30 transition-transform duration-200 ease-out"
                 style={{
                   transform: prefersReduced
                     ? undefined
@@ -494,7 +494,7 @@ export default function Hero() {
                   alt="Premium sofa"
                   fill
                   className="object-cover"
-                  sizes="(max-width: 640px) 192px, (max-width: 1024px) 240px, 288px"
+                  sizes="(max-width: 640px) 176px, (max-width: 1024px) 224px, 256px"
                   priority
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
