@@ -111,7 +111,7 @@ export default function Footer() {
 
         <div className="border-t border-white/10 mt-12 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-white/40 text-sm">
-            &copy; {new Date().getFullYear()} {SITE_NAME}. All rights reserved.
+            &copy; 2026 {SITE_NAME}. All rights reserved.
           </p>
           <div className="flex items-center gap-6 text-sm text-white/40">
             <span className="hover:text-white/60 cursor-pointer transition-colors">
