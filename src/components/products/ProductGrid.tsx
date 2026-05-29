@@ -334,7 +334,7 @@ export default function ProductGrid() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.05 }}
               >
-                <ProductCard product={product} />
+                <ProductCard product={product} viewMode={viewMode} />
               </motion.div>
             ))}
           </motion.div>
