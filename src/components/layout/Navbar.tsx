@@ -1,24 +1,73 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { ShoppingBag, Menu, X, User, Heart, Search } from "lucide-react";
+import {
+  ShoppingBag,
+  Menu,
+  X,
+  User,
+  Search,
+  ArrowRight,
+} from "lucide-react";
 import { NAV_LINKS, SITE_NAME } from "@/lib/constants";
 import { useCartStore } from "@/store/cartStore";
 import { useAuthStore } from "@/store/authStore";
+import { products } from "@/data/products";
+import { formatPrice } from "@/lib/utils";
 import { cn } from "@/lib/utils";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [query, setQuery] = useState("");
+  const searchRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
   const itemCount = useCartStore((s) => s.getItemCount());
   const user = useAuthStore((s) => s.user);
+
+  const results =
+    query.trim().length >= 2
+      ? products
+          .filter(
+            (p) =>
+              p.name.toLowerCase().includes(query.toLowerCase()) ||
+              p.category.toLowerCase().includes(query.toLowerCase()) ||
+              p.material.toLowerCase().includes(query.toLowerCase()) ||
+              p.tags.some((t) =>
+                t.toLowerCase().includes(query.toLowerCase())
+              )
+          )
+          .slice(0, 6)
+      : [];
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    if (searchOpen && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [searchOpen]);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (
+        searchRef.current &&
+        !searchRef.current.contains(e.target as Node)
+      ) {
+        setSearchOpen(false);
+        setQuery("");
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   return (
@@ -36,7 +85,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
+          <Link href="/" className="flex items-center gap-2 shrink-0">
             <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
               <span className="text-white font-bold text-lg">W</span>
             </div>
@@ -57,13 +106,112 @@ export default function Navbar() {
           </nav>
 
           {/* Actions */}
-          <div className="flex items-center gap-3">
-            <Link
-              href="/products"
-              className="hidden sm:flex p-2 text-primary/70 hover:text-primary transition-colors"
-            >
-              <Search size={20} />
-            </Link>
+          <div className="flex items-center gap-2 sm:gap-3">
+            {/* Search */}
+            <div ref={searchRef} className="relative">
+              <button
+                onClick={() => setSearchOpen(!searchOpen)}
+                className="p-2 text-primary/70 hover:text-primary transition-colors"
+              >
+                <Search size={20} />
+              </button>
+
+              <AnimatePresence>
+                {searchOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute right-0 top-full mt-2 w-[90vw] sm:w-[420px] bg-white rounded-xl shadow-xl border border-surface-dark overflow-hidden"
+                  >
+                    {/* Search Input */}
+                    <div className="flex items-center gap-3 px-4 py-3 border-b border-surface-dark">
+                      <Search size={18} className="text-muted shrink-0" />
+                      <input
+                        ref={inputRef}
+                        type="text"
+                        placeholder="Search furniture..."
+                        value={query}
+                        onChange={(e) => setQuery(e.target.value)}
+                        className="flex-1 text-sm text-primary placeholder:text-muted outline-none"
+                      />
+                      {query && (
+                        <button
+                          onClick={() => setQuery("")}
+                          className="text-muted hover:text-primary"
+                        >
+                          <X size={16} />
+                        </button>
+                      )}
+                    </div>
+
+                    {/* Results */}
+                    <div className="max-h-[400px] overflow-y-auto">
+                      {query.trim().length < 2 ? (
+                        <div className="px-4 py-8 text-center text-sm text-muted">
+                          Type at least 2 characters to search...
+                        </div>
+                      ) : results.length === 0 ? (
+                        <div className="px-4 py-8 text-center text-sm text-muted">
+                          No products found for &ldquo;{query}&rdquo;
+                        </div>
+                      ) : (
+                        <div className="py-2">
+                          {results.map((product) => (
+                            <Link
+                              key={product.id}
+                              href={`/products/${product.slug}`}
+                              onClick={() => {
+                                setSearchOpen(false);
+                                setQuery("");
+                              }}
+                              className="flex items-center gap-3 px-4 py-2.5 hover:bg-surface transition-colors"
+                            >
+                              <div className="relative w-12 h-12 rounded-lg overflow-hidden bg-surface shrink-0">
+                                <Image
+                                  src={product.images[0]}
+                                  alt={product.name}
+                                  fill
+                                  className="object-cover"
+                                  sizes="48px"
+                                />
+                              </div>
+                              <div className="flex-1 min-w-0">
+                                <p className="text-sm font-medium text-primary truncate">
+                                  {product.name}
+                                </p>
+                                <p className="text-xs text-muted">
+                                  {product.category}
+                                </p>
+                              </div>
+                              <span className="text-sm font-semibold text-primary shrink-0">
+                                {formatPrice(product.price)}
+                              </span>
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+
+                    {/* View All */}
+                    {results.length > 0 && (
+                      <Link
+                        href={`/products?search=${encodeURIComponent(query)}`}
+                        onClick={() => {
+                          setSearchOpen(false);
+                          setQuery("");
+                        }}
+                        className="flex items-center justify-center gap-2 px-4 py-3 text-sm font-medium text-accent hover:text-accent-dark border-t border-surface-dark transition-colors"
+                      >
+                        View all results
+                        <ArrowRight size={14} />
+                      </Link>
+                    )}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
 
             <Link
               href="/auth/login"

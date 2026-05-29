@@ -1,6 +1,7 @@
 "use client";
 
 import { Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import ProductGrid from "@/components/products/ProductGrid";
 import Breadcrumb from "@/components/layout/Breadcrumb";
 import AnimatedSection from "@/components/ui/AnimatedSection";
@@ -33,9 +34,15 @@ export default function ProductsPage() {
             </div>
           }
         >
-          <ProductGrid />
+          <ProductGridWrapper />
         </Suspense>
       </div>
     </div>
   );
+}
+
+function ProductGridWrapper() {
+  const searchParams = useSearchParams();
+  const initialSearch = searchParams.get("search") || "";
+  return <ProductGrid initialSearch={initialSearch} />;
 }

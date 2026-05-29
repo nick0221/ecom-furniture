@@ -9,13 +9,13 @@ import { products } from "@/data/products";
 import ProductCard from "./ProductCard";
 import { cn } from "@/lib/utils";
 
-export default function ProductGrid() {
+export default function ProductGrid({ initialSearch = "" }: { initialSearch?: string }) {
   const [filters, setFilters] = useState<FilterState>({
     category: [],
     material: [],
     color: [],
     priceRange: [0, 10000],
-    search: "",
+    search: initialSearch,
     sort: "newest",
   });
   const [showFilters, setShowFilters] = useState(false);
