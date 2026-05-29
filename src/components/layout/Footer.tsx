@@ -169,8 +169,8 @@ export default function Footer() {
           <div className="lg:col-span-2 lg:col-start-6">
             <MobileAccordion title="Shop">
               <ul className="space-y-2.5">
-                {footerLinks.shop.map((link) => (
-                  <li key={link.href}>
+                {footerLinks.support.map((link) => (
+                  <li key={link.label}>
                     <Link
                       href={link.href}
                       className="text-white/60 hover:text-accent transition-colors text-sm"
@@ -188,7 +188,7 @@ export default function Footer() {
             <MobileAccordion title="Company">
               <ul className="space-y-2.5">
                 {footerLinks.company.map((link) => (
-                  <li key={link.href}>
+                  <li key={link.label}>
                     <Link
                       href={link.href}
                       className="text-white/60 hover:text-accent transition-colors text-sm"
