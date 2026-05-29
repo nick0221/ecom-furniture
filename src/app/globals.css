@@ -82,3 +82,40 @@ select:focus {
 .animate-ticker {
   animation: ticker 25s linear infinite;
 }
+
+/* ── Hero gradient shimmer text ────────────────────── */
+.hero-gradient-text {
+  background: linear-gradient(
+    120deg,
+    #C4A77D 0%,
+    #D4BFA0 25%,
+    #fff 50%,
+    #D4BFA0 75%,
+    #C4A77D 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShimmer 3s linear infinite;
+}
+
+@keyframes gradientShimmer {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+/* ── Reduced motion ───────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .animate-shimmer,
+  .animate-float,
+  .animate-marquee,
+  .animate-ticker,
+  .hero-gradient-text {
+    animation: none !important;
+  }
+
+  .hero-particle {
+    display: none !important;
+  }
+}
