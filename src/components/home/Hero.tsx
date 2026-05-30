@@ -142,6 +142,7 @@ export default function Hero() {
   const [mouse, setMouse] = useState({ x: 0, y: 0 });
   const [loaded, setLoaded] = useState(false);
   const [prefersReduced, setPrefersReduced] = useState(false);
+  const [hoveredPhoto, setHoveredPhoto] = useState<number | null>(null);
 
   const { scrollY } = useScroll();
   const y1 = useTransform(scrollY, [0, 500], [0, -100]);
@@ -439,7 +440,10 @@ export default function Hero() {
                 initial={{ opacity: 0, x: 100, y: 80, rotate: 0 }}
                 animate={{ opacity: 1, x: -110, y: -60, rotate: -15 }}
                 transition={{ duration: 1, delay: prefersReduced ? 0 : 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-                className="absolute w-44 h-56 sm:w-52 sm:h-64 lg:w-60 lg:h-76 rounded-2xl overflow-hidden shadow-2xl border-4 border-white/20 z-10 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_50px_-10px_rgba(196,167,125,0.4)] hover:border-accent/40 cursor-pointer"
+                onMouseEnter={() => setHoveredPhoto(1)}
+                onMouseLeave={() => setHoveredPhoto(null)}
+                className="absolute w-44 h-56 sm:w-52 sm:h-64 lg:w-60 lg:h-76 rounded-2xl overflow-hidden shadow-2xl border-4 border-white/20 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_50px_-10px_rgba(196,167,125,0.4)] hover:border-accent/40 cursor-pointer"
+                style={{ zIndex: hoveredPhoto === 1 ? 50 : 10 }}
               >
                 <Image
                   src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=500"
@@ -460,7 +464,10 @@ export default function Hero() {
                 initial={{ opacity: 0, x: -100, y: 80, rotate: 0 }}
                 animate={{ opacity: 1, x: 110, y: 30, rotate: 12 }}
                 transition={{ duration: 1, delay: prefersReduced ? 0 : 0.45, ease: [0.25, 0.46, 0.45, 0.94] }}
-                className="absolute w-44 h-56 sm:w-52 sm:h-64 lg:w-60 lg:h-76 rounded-2xl overflow-hidden shadow-2xl border-4 border-white/20 z-20 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_50px_-10px_rgba(196,167,125,0.4)] hover:border-accent/40 cursor-pointer"
+                onMouseEnter={() => setHoveredPhoto(2)}
+                onMouseLeave={() => setHoveredPhoto(null)}
+                className="absolute w-44 h-56 sm:w-52 sm:h-64 lg:w-60 lg:h-76 rounded-2xl overflow-hidden shadow-2xl border-4 border-white/20 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_50px_-10px_rgba(196,167,125,0.4)] hover:border-accent/40 cursor-pointer"
+                style={{ zIndex: hoveredPhoto === 2 ? 50 : 20 }}
               >
                 <Image
                   src="https://images.unsplash.com/photo-1532372576444-dda954194ad0?w=500"
@@ -482,8 +489,11 @@ export default function Hero() {
                 initial={{ opacity: 0, y: 70, scale: 0.8 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{ duration: 1.1, delay: prefersReduced ? 0 : 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-                className="absolute w-52 h-72 sm:w-64 sm:h-84 lg:w-80 lg:h-[420px] rounded-3xl overflow-hidden shadow-[0_30px_70px_-15px_rgba(0,0,0,0.6)] border-4 border-white/30 z-30 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_40px_80px_-15px_rgba(196,167,125,0.5)] hover:border-accent/50 cursor-pointer"
+                onMouseEnter={() => setHoveredPhoto(3)}
+                onMouseLeave={() => setHoveredPhoto(null)}
+                className="absolute w-52 h-72 sm:w-64 sm:h-84 lg:w-80 lg:h-[420px] rounded-3xl overflow-hidden shadow-[0_30px_70px_-15px_rgba(0,0,0,0.6)] border-4 border-white/30 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_40px_80px_-15px_rgba(196,167,125,0.5)] hover:border-accent/50 cursor-pointer"
                 style={{
+                  zIndex: hoveredPhoto === 3 ? 50 : 30,
                   transform: prefersReduced
                     ? undefined
                     : `perspective(800px) rotateX(${tiltX * 0.8}deg) rotateY(${tiltY * 0.8}deg)`,
