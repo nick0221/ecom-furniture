@@ -8,26 +8,32 @@ A fully functional e-commerce website for a premium furniture shop built with Ne
 
 ## Screenshots
 
-### Home Page
-![Home Hero](public/screenshots/home-hero.png)
-
-### Product Catalog
-![Product Listing](public/screenshots/products.png)
-
-### Product Detail
-![Product Detail](public/screenshots/product-detail.png)
-
-### Shopping Cart
-![Cart](public/screenshots/cart.png)
-
-### Checkout
-![Checkout](public/screenshots/checkout.png)
-
-### Quick View Modal
-![Quick View](public/screenshots/quick-view.png)
-
-### Mobile View
-![Mobile](public/screenshots/mobile.png)
+<table>
+  <tr>
+    <td align="center"><strong>Home Page</strong></td>
+    <td align="center"><strong>Product Catalog</strong></td>
+    <td align="center"><strong>Product Detail</strong></td>
+    <td align="center"><strong>Shopping Cart</strong></td>
+  </tr>
+  <tr>
+    <td><img src="public/screenshots/home-hero.png" alt="Home Hero" width="100%"></td>
+    <td><img src="public/screenshots/products.png" alt="Product Listing" width="100%"></td>
+    <td><img src="public/screenshots/product-detail.png" alt="Product Detail" width="100%"></td>
+    <td><img src="public/screenshots/cart.png" alt="Cart" width="100%"></td>
+  </tr>
+  <tr>
+    <td align="center"><strong>Checkout</strong></td>
+    <td align="center"><strong>Quick View</strong></td>
+    <td align="center"><strong>Mobile View</strong></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td><img src="public/screenshots/checkout.png" alt="Checkout" width="100%"></td>
+    <td><img src="public/screenshots/quick-view.png" alt="Quick View" width="100%"></td>
+    <td><img src="public/screenshots/mobile.png" alt="Mobile" width="100%"></td>
+    <td></td>
+  </tr>
+</table>
 
 ## Features
 
