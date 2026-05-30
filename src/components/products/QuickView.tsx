@@ -3,7 +3,8 @@
 import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import Image from "next/image";
-import { X, Star, Minus, Plus, ShoppingBag, Heart } from "lucide-react";
+import Link from "next/link";
+import { X, Star, Minus, Plus, ShoppingBag, Heart, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { Product } from "@/types";
 import { formatPrice, getDiscount } from "@/lib/utils";
@@ -190,6 +191,15 @@ export default function QuickView({ product, isOpen, onClose }: QuickViewProps) 
                     />
                   </button>
                 </div>
+
+                <Link
+                  href={`/products/${product.slug}`}
+                  onClick={onClose}
+                  className="mt-4 flex items-center justify-center gap-2 w-full py-2.5 text-sm font-medium text-accent hover:text-accent-dark border border-accent/30 rounded-lg hover:bg-accent/5 transition-colors"
+                >
+                  View Full Details
+                  <ArrowRight size={14} />
+                </Link>
               </div>
             </div>
           </motion.div>
