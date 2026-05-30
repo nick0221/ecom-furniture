@@ -6,6 +6,29 @@ A fully functional e-commerce website for a premium furniture shop built with Ne
 
 🔗 [View Live Site](https://ecom-furniture-kohl.vercel.app)
 
+## Screenshots
+
+### Home Page
+![Home Hero](public/screenshots/home-hero.png)
+
+### Product Catalog
+![Product Listing](public/screenshots/products.png)
+
+### Product Detail
+![Product Detail](public/screenshots/product-detail.png)
+
+### Shopping Cart
+![Cart](public/screenshots/cart.png)
+
+### Checkout
+![Checkout](public/screenshots/checkout.png)
+
+### Quick View Modal
+![Quick View](public/screenshots/quick-view.png)
+
+### Mobile View
+![Mobile](public/screenshots/mobile.png)
+
 ## Features
 
 ### Core E-Commerce
