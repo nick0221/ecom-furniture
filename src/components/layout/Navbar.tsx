@@ -239,13 +239,6 @@ export default function Navbar() {
             </div>
 
             <Link
-              href="/auth/login"
-              className="hidden sm:flex p-2 text-primary/70 hover:text-primary transition-colors"
-            >
-              <User size={20} />
-            </Link>
-
-            <Link
               href="/wishlist"
               className="hidden sm:flex p-2 text-primary/70 hover:text-primary transition-colors"
             >
@@ -266,6 +259,13 @@ export default function Navbar() {
                   {itemCount}
                 </motion.span>
               )}
+            </Link>
+
+            <Link
+              href="/auth/login"
+              className="hidden sm:flex p-2 text-primary/70 hover:text-primary transition-colors"
+            >
+              <User size={20} />
             </Link>
 
             {/* Mobile Menu Toggle */}
