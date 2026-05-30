@@ -59,9 +59,9 @@ export default function QuickView({ product, isOpen, onClose }: QuickViewProps) 
               <X size={18} />
             </button>
 
-            <div className="grid grid-cols-1 md:grid-cols-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 min-h-[500px]">
               {/* Images */}
-              <div className="relative aspect-square bg-surface">
+              <div className="relative bg-surface min-h-[300px] md:min-h-0">
                 <Image
                   src={product.images[selectedImage]}
                   alt={product.name}
