@@ -4,7 +4,7 @@ import { useState, lazy, Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Heart, ShoppingBag, Star, Eye } from "lucide-react";
+import { Heart, ShoppingBag, Star, Eye, ArrowRight } from "lucide-react";
 import type { Product } from "@/types";
 import { formatPrice, getDiscount } from "@/lib/utils";
 import Badge from "@/components/ui/Badge";
@@ -231,6 +231,10 @@ export default function ProductCard({
               {formatPrice(product.originalPrice)}
             </span>
           )}
+        </div>
+        <div className="mt-3 flex items-center gap-1.5 text-accent text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          View Details
+          <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
         </div>
       </Link>
 
