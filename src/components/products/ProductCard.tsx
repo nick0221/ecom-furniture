@@ -1,15 +1,18 @@
 "use client";
 
+import { useState, lazy, Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Heart, ShoppingBag, Star } from "lucide-react";
+import { Heart, ShoppingBag, Star, Eye } from "lucide-react";
 import type { Product } from "@/types";
 import { formatPrice, getDiscount } from "@/lib/utils";
 import Badge from "@/components/ui/Badge";
 import { useCartStore } from "@/store/cartStore";
 import { useWishlistStore } from "@/store/wishlistStore";
 import { useToastStore } from "@/components/ui/Toast";
+
+const QuickView = lazy(() => import("./QuickView"));
 
 interface ProductCardProps {
   product: Product;
@@ -25,6 +28,7 @@ export default function ProductCard({
     useWishlistStore();
   const wishlisted = isInWishlist(product.id);
   const addToast = useToastStore((s) => s.addToast);
+  const [quickViewOpen, setQuickViewOpen] = useState(false);
 
   if (viewMode === "list") {
     return (
@@ -37,7 +41,6 @@ export default function ProductCard({
           href={`/products/${product.slug}`}
           className="flex flex-col sm:flex-row"
         >
-          {/* Image — square on mobile, fixed-width on desktop */}
           <div className="relative w-full sm:w-48 md:w-56 lg:w-64 shrink-0 aspect-square sm:aspect-auto sm:h-48 md:h-56 lg:h-auto overflow-hidden bg-surface">
             <Image
               src={product.images[0]}
@@ -55,7 +58,6 @@ export default function ProductCard({
             )}
           </div>
 
-          {/* Info */}
           <div className="flex-1 p-4 sm:p-5 flex flex-col justify-between min-w-0">
             <div>
               <p className="text-xs text-muted uppercase tracking-wide mb-1">
@@ -185,6 +187,15 @@ export default function ProductCard({
           >
             <ShoppingBag size={16} className="text-muted" />
           </button>
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              setQuickViewOpen(true);
+            }}
+            className="w-9 h-9 bg-white rounded-full shadow-md flex items-center justify-center hover:bg-surface transition-colors"
+          >
+            <Eye size={16} className="text-muted" />
+          </button>
         </div>
       </div>
 
@@ -223,6 +234,15 @@ export default function ProductCard({
         </div>
       </Link>
 
+      {quickViewOpen && (
+        <Suspense fallback={null}>
+          <QuickView
+            product={product}
+            isOpen={quickViewOpen}
+            onClose={() => setQuickViewOpen(false)}
+          />
+        </Suspense>
+      )}
     </motion.div>
   );
 }
