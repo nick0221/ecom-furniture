@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import Image from "next/image";
 import { X, Star, Minus, Plus, ShoppingBag, Heart } from "lucide-react";
@@ -22,13 +22,16 @@ interface QuickViewProps {
 export default function QuickView({ product, isOpen, onClose }: QuickViewProps) {
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
+  const [mounted, setMounted] = useState(false);
   const addItem = useCartStore((s) => s.addItem);
   const { addItem: addWishlist, removeItem: removeWishlist, isInWishlist } =
     useWishlistStore();
   const addToast = useToastStore((s) => s.addToast);
   const wishlisted = isInWishlist(product.id);
 
-  if (typeof window === "undefined") return null;
+  useEffect(() => setMounted(true), []);
+
+  if (!mounted) return null;
 
   return createPortal(
     <AnimatePresence>
