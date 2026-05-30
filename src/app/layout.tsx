@@ -6,7 +6,6 @@ import Footer from "@/components/layout/Footer";
 import { ToastContainer } from "@/components/ui/Toast";
 import BackToTop from "@/components/home/BackToTop";
 import ScrollProgress from "@/components/ui/ScrollProgress";
-import PageTransition from "@/components/ui/PageTransition";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -103,9 +102,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-surface">
         <ScrollProgress />
         <Navbar />
-        <main className="flex-1 pt-16 lg:pt-20">
-          <PageTransition>{children}</PageTransition>
-        </main>
+        <main className="flex-1 pt-16 lg:pt-20">{children}</main>
         <Footer />
         <ToastContainer />
         <BackToTop />
