@@ -143,6 +143,9 @@ export default function Hero() {
   const [loaded, setLoaded] = useState(false);
   const [prefersReduced, setPrefersReduced] = useState(false);
   const [hoveredPhoto, setHoveredPhoto] = useState<number | null>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
 
   const { scrollY } = useScroll();
   const y1 = useTransform(scrollY, [0, 500], [0, -100]);
@@ -313,7 +316,7 @@ export default function Hero() {
 
         {/* ── Content ──────────────────────────────── */}
         <motion.div
-          style={{ y: y1, opacity }}
+          style={mounted ? { y: y1, opacity } : undefined}
           className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10 w-full"
         >
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -432,7 +435,7 @@ export default function Hero() {
 
             {/* ── Right: Overlapping Photo Stack ────── */}
             <motion.div
-              style={{ y: y2 }}
+              style={mounted ? { y: y2 } : undefined}
               className="flex items-center justify-center relative mt-10 lg:mt-0 h-[420px] sm:h-[500px] lg:h-[560px] w-full max-w-xl lg:max-w-2xl"
             >
               {/* Back-left photo */}
