@@ -252,14 +252,14 @@ export default function Navbar() {
               className="relative p-2 text-primary/70 hover:text-primary transition-colors"
             >
               <ShoppingBag size={20} />
-              {itemCount > 0 && (
-                <span
-                  suppressHydrationWarning
-                  className="absolute -top-0.5 -right-0.5 bg-accent text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-medium"
-                >
-                  {itemCount}
-                </span>
-              )}
+              <span
+                suppressHydrationWarning
+                className={`absolute -top-0.5 -right-0.5 bg-accent text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-medium ${
+                  itemCount > 0 && hydrated ? "scale-100" : "scale-0"
+                }`}
+              >
+                {hydrated ? itemCount : 0}
+              </span>
             </Link>
 
             <Link
