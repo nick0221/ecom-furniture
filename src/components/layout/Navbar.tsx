@@ -20,19 +20,18 @@ import { useAuthStore } from "@/store/authStore";
 import { products } from "@/data/products";
 import { formatPrice } from "@/lib/utils";
 import { cn } from "@/lib/utils";
+import { useHydrated } from "@/hooks/useHydrated";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [query, setQuery] = useState("");
-  const [mounted, setMounted] = useState(false);
   const searchRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const hydrated = useHydrated();
   const itemCount = useCartStore((s) => s.getItemCount());
   const user = useAuthStore((s) => s.user);
-
-  useEffect(() => setMounted(true), []);
 
   const results =
     query.trim().length >= 2
@@ -253,17 +252,11 @@ export default function Navbar() {
               className="relative p-2 text-primary/70 hover:text-primary transition-colors"
             >
               <ShoppingBag size={20} />
-              {itemCount > 0 && mounted && (
-                <motion.span
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
+              {itemCount > 0 && (
+                <span
+                  suppressHydrationWarning
                   className="absolute -top-0.5 -right-0.5 bg-accent text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-medium"
                 >
-                  {itemCount}
-                </motion.span>
-              )}
-              {itemCount > 0 && !mounted && (
-                <span className="absolute -top-0.5 -right-0.5 bg-accent text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-medium">
                   {itemCount}
                 </span>
               )}
