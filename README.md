@@ -4,7 +4,7 @@ A fully functional e-commerce website for a premium furniture shop built with Ne
 
 ## Live Demo
 
-🔗 [View Live Site](https://woodcraft.vercel.app)
+🔗 [View Live Site](https://ecom-furniture-kohl.vercel.app)
 
 ## Features
 
