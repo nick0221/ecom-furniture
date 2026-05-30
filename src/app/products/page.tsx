@@ -1,5 +1,4 @@
-import { Suspense } from "react";
-import ProductsContent from "./ProductsContent";
+import ProductGrid from "@/components/products/ProductGrid";
 
 export default function ProductsPage() {
   return (
@@ -18,7 +17,7 @@ export default function ProductsPage() {
             Discover furniture crafted with care and designed for living
           </p>
         </div>
-        <ProductsContent />
+        <ProductGrid />
       </div>
     </div>
   );
