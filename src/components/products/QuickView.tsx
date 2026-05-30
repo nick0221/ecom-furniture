@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { createPortal } from "react-dom";
 import Image from "next/image";
 import { X, Star, Minus, Plus, ShoppingBag, Heart } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -27,7 +28,9 @@ export default function QuickView({ product, isOpen, onClose }: QuickViewProps) 
   const addToast = useToastStore((s) => s.addToast);
   const wishlisted = isInWishlist(product.id);
 
-  return (
+  if (typeof window === "undefined") return null;
+
+  return createPortal(
     <AnimatePresence>
       {isOpen && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
@@ -189,6 +192,7 @@ export default function QuickView({ product, isOpen, onClose }: QuickViewProps) 
           </motion.div>
         </div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body
   );
 }
