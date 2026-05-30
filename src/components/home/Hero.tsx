@@ -439,21 +439,18 @@ export default function Hero() {
                 initial={{ opacity: 0, x: 100, y: 80, rotate: 0 }}
                 animate={{ opacity: 1, x: -110, y: -60, rotate: -15 }}
                 transition={{ duration: 1, delay: prefersReduced ? 0 : 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-                className="absolute w-44 h-56 sm:w-52 sm:h-64 lg:w-60 lg:h-76 rounded-2xl overflow-hidden shadow-2xl border-4 border-white/20 z-10 group/photo cursor-pointer"
+                className="absolute w-44 h-56 sm:w-52 sm:h-64 lg:w-60 lg:h-76 rounded-2xl overflow-hidden shadow-2xl border-4 border-white/20 z-10 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_50px_-10px_rgba(196,167,125,0.4)] hover:border-accent/40 cursor-pointer"
               >
                 <Image
                   src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=500"
                   alt="Minimalist bedroom"
                   fill
-                  className="object-cover transition-all duration-500 group-hover/photo:scale-110 group-hover/photo:brightness-110"
+                  className="object-cover"
                   sizes="(max-width: 640px) 176px, (max-width: 1024px) 208px, 240px"
                   priority
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent transition-opacity duration-300 group-hover/photo:opacity-60" />
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/photo:opacity-100 transition-opacity duration-300 z-10">
-                  <span className="bg-white/90 backdrop-blur-sm text-primary text-xs font-semibold px-3 py-1.5 rounded-full shadow-lg">View</span>
-                </div>
-                <div className="absolute bottom-3 left-3 z-10">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                <div className="absolute bottom-3 left-3">
                   <p className="text-white text-xs font-semibold drop-shadow-lg">Bedrooms</p>
                 </div>
               </motion.div>
@@ -463,21 +460,18 @@ export default function Hero() {
                 initial={{ opacity: 0, x: -100, y: 80, rotate: 0 }}
                 animate={{ opacity: 1, x: 110, y: 30, rotate: 12 }}
                 transition={{ duration: 1, delay: prefersReduced ? 0 : 0.45, ease: [0.25, 0.46, 0.45, 0.94] }}
-                className="absolute w-44 h-56 sm:w-52 sm:h-64 lg:w-60 lg:h-76 rounded-2xl overflow-hidden shadow-2xl border-4 border-white/20 z-20 group/photo cursor-pointer"
+                className="absolute w-44 h-56 sm:w-52 sm:h-64 lg:w-60 lg:h-76 rounded-2xl overflow-hidden shadow-2xl border-4 border-white/20 z-20 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_50px_-10px_rgba(196,167,125,0.4)] hover:border-accent/40 cursor-pointer"
               >
                 <Image
                   src="https://images.unsplash.com/photo-1532372576444-dda954194ad0?w=500"
                   alt="Industrial dining table"
                   fill
-                  className="object-cover transition-all duration-500 group-hover/photo:scale-110 group-hover/photo:brightness-110"
+                  className="object-cover"
                   sizes="(max-width: 640px) 176px, (max-width: 1024px) 208px, 240px"
                   priority
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent transition-opacity duration-300 group-hover/photo:opacity-60" />
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/photo:opacity-100 transition-opacity duration-300 z-10">
-                  <span className="bg-white/90 backdrop-blur-sm text-primary text-xs font-semibold px-3 py-1.5 rounded-full shadow-lg">View</span>
-                </div>
-                <div className="absolute bottom-3 left-3 z-10">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                <div className="absolute bottom-3 left-3">
                   <p className="text-white text-xs font-semibold drop-shadow-lg">Dining</p>
                 </div>
               </motion.div>
@@ -488,7 +482,7 @@ export default function Hero() {
                 initial={{ opacity: 0, y: 70, scale: 0.8 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{ duration: 1.1, delay: prefersReduced ? 0 : 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-                className="absolute w-52 h-72 sm:w-64 sm:h-84 lg:w-80 lg:h-[420px] rounded-3xl overflow-hidden shadow-[0_30px_70px_-15px_rgba(0,0,0,0.6)] border-4 border-white/30 z-30 transition-transform duration-200 ease-out group/photo cursor-pointer"
+                className="absolute w-52 h-72 sm:w-64 sm:h-84 lg:w-80 lg:h-[420px] rounded-3xl overflow-hidden shadow-[0_30px_70px_-15px_rgba(0,0,0,0.6)] border-4 border-white/30 z-30 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_40px_80px_-15px_rgba(196,167,125,0.5)] hover:border-accent/50 cursor-pointer"
                 style={{
                   transform: prefersReduced
                     ? undefined
@@ -499,15 +493,12 @@ export default function Hero() {
                   src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600"
                   alt="Premium sofa"
                   fill
-                  className="object-cover transition-all duration-500 group-hover/photo:scale-110 group-hover/photo:brightness-110"
+                  className="object-cover"
                   sizes="(max-width: 640px) 208px, (max-width: 1024px) 256px, 320px"
                   priority
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent transition-opacity duration-300 group-hover/photo:opacity-60" />
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/photo:opacity-100 transition-opacity duration-300 z-10">
-                  <span className="bg-white/90 backdrop-blur-sm text-primary text-sm font-semibold px-4 py-2 rounded-full shadow-lg">View Collection</span>
-                </div>
-                <div className="absolute bottom-4 left-4 right-4 z-10">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                <div className="absolute bottom-4 left-4 right-4">
                   <p className="text-white text-sm font-bold drop-shadow-lg">Living Room</p>
                   <p className="text-white/70 text-xs mt-0.5">Our bestseller collection</p>
                 </div>
